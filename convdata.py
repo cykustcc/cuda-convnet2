@@ -211,7 +211,8 @@ class CIFARDataProvider(LabeledDataProvider):
         LabeledDataProvider.__init__(self, data_dir, batch_range, init_epoch, init_batchnum, dp_params, test)
         self.img_size = 32 
         self.num_colors = 3
-        self.inner_size =  dp_params['inner_size'] if dp_params['inner_size'] > 0 else self.batch_meta['img_size']
+        # self.inner_size =  dp_params['inner_size'] if dp_params['inner_size'] > 0 else self.batch_meta['img_size']
+        self.inner_size =  dp_params['inner_size'] if dp_params['inner_size'] > 0 else 32 
         self.border_size = (self.img_size - self.inner_size) / 2
         self.multiview = dp_params['multiview_test'] and test
         self.num_views = 9

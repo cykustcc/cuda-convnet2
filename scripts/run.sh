@@ -1,0 +1,1 @@
+python convnet.py --data-path=./data/cifar-10-py-colmajor/ --save-path=./storage/ --test-range=6 --train-range=1-5 --layer-def=./layers/layers-cifar10-11pct.cfg --layer-params=./layers/layer-params-cifar10-11pct.cfg --data-provider=cifar --test-freq=13 --gpu=0

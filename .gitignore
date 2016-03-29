@@ -1,1 +1,6 @@
 *.so
+./data/*
+./storage/*
+data
+storage
+*.pyc
