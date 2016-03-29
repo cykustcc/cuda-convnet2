@@ -13,7 +13,7 @@
 # limitations under the License.
 
 LINK_LIBS := -L$(ATLAS_LIB_PATH) -latlas -lcblas
-INCLUDES := -I./include
+INCLUDES := -I./include -I/usr/include/openblas -I/usr/global/CBLAS/3.5.0/include
 COMMONFLAGS :=
 CC_ARGS := 
 CC=g++
@@ -27,7 +27,7 @@ OUT_FILE=libutil.so
 
 ifeq ($(numpy), 1)
 	PYTHON_VERSION=$(shell python -V 2>&1 | cut -d ' ' -f 2 | cut -d '.' -f 1,2)
-	LINK_LIBS += -lpython$(PYTHON_VERSION)
+	LINK_LIBS += -L$(PYTHON_LIB_PATH) -lpython$(PYTHON_VERSION)
 
 	INCLUDES += -I$(PYTHON_INCLUDE_PATH) -I$(NUMPY_INCLUDE_PATH)
 	COMMONFLAGS += -DNUMPY_INTERFACE

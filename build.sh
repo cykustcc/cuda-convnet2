@@ -24,27 +24,36 @@
 # find /usr -name arrayobject.h
 # 
 # (it'll almost certainly be under /usr)
-
+module load cblas/3.5.0
 # CUDA toolkit installation directory.
-export CUDA_INSTALL_PATH=/usr/local/cuda
+#export CUDA_INSTALL_PATH=/usr/local/cuda
+export CUDA_INSTALL_PATH=/usr/global/cuda/7.0/
 
 # Python include directory. This should contain the file Python.h, among others.
-export PYTHON_INCLUDE_PATH=/usr/include/python2.7
+#export PYTHON_INCLUDE_PATH=/usr/include/python2.7
+#export PYTHON_INCLUDE_PATH=/usr/global/python/2.7.3/include/python2.7
+export PYTHON_INCLUDE_PATH=/gpfs/group/wang/yzz123/libs/include/python2.7
+
+#export PYTHON_LIB_PATH=/usr/global/python/2.7.3/lib
+export PYTHON_LIB_PATH=/gpfs/group/wang/yzz123/libs/lib
 
 # Numpy include directory. This should contain the file arrayobject.h, among others.
-export NUMPY_INCLUDE_PATH=/usr/lib/python2.7/dist-packages/numpy/core/include/numpy/
+# export NUMPY_INCLUDE_PATH=/usr/lib/python2.7/dist-packages/numpy/core/include/numpy/
+export NUMPY_INCLUDE_PATH=/gpfs/group/wang/yzz123/libs/lib/python2.7/site-packages/numpy/core/include/numpy/
 
 # ATLAS library directory. This should contain the file libcblas.so, among others.
-export ATLAS_LIB_PATH=/usr/lib/atlas-base
-
+# export ATLAS_LIB_PATH=/usr/lib/atlas-base
+# export ATLAS_LIB_PATH=/usr/lib64/atlas
+export ATLAS_LIB_PATH=~/work/libs/atlas
+export ATLAS_INCLUDE_PATH=
 # You don't have to change these:
 export LD_LIBRARY_PATH=$CUDA_INSTALL_PATH/lib64:$LD_LIBRARY_PATH
 export CUDA_SDK_PATH=$CUDA_INSTALL_PATH/samples
 export PATH=$PATH:$CUDA_INSTALL_PATH/bin
 
-cd util && make numpy=1 -j $* && cd ..
-cd nvmatrix && make -j $* && cd ..
-cd cudaconv3 && make -j $* && cd ..
-cd cudaconvnet && make -j $* && cd ..
-cd make-data/pyext && make -j $* && cd ../..
+cd ./util && make numpy=1 -j $* && cd ..
+cd ./nvmatrix && make -j $* && cd ..
+cd ./cudaconv3 && make -j $* && cd ..
+cd ./cudaconvnet && make -j $* && cd ..
+cd ./make-data/pyext && make -j $* && cd ../..
 

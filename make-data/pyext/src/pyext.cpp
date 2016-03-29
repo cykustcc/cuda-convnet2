@@ -65,6 +65,7 @@ DecoderThread::DecoderThread(PyObject* py_list_src, int start_img, int end_img, 
 : Thread(true), _py_list_src(py_list_src), _start_img(start_img), _end_img(end_img), _target_size(target_size), _crop_to_square(crop_to_square) {
 
     _encode_params.push_back(CV_IMWRITE_JPEG_QUALITY);
+    //_encode_params.push_back(cv::IMREAD_COLOR);
     _encode_params.push_back(JPEG_QUALITY);
     _py_list_tgt = PyList_New(0);
 }
@@ -93,7 +94,8 @@ void DecoderThread::makeJPEG(int idx) {
     size_t src_len = PyString_GET_SIZE(pySrc);
     vector<uchar> src_vec(src, src + src_len);
 
-    cv::Mat decoded_mat = cv::imdecode(cv::Mat(src_vec), CV_LOAD_IMAGE_COLOR);
+    //cv::Mat decoded_mat = cv::imdecode(cv::Mat(src_vec), CV_LOAD_IMAGE_COLOR);
+    cv::Mat decoded_mat = cv::imdecode(cv::Mat(src_vec), cv::IMREAD_COLOR);
     assert(decoded_mat.channels() == 3);
 
     /*

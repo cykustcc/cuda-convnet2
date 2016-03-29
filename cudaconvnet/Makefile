@@ -37,7 +37,7 @@ CUDA_LIB_PATH  = $(CUDA_INSTALL_PATH)/lib64
 # Common binaries
 NVCC            = $(CUDA_BIN_PATH)/nvcc
 GCC             = g++
-AR				= ar
+AR		= ar
 
 # CUDA code generation flags
 GENCODE_SM35    := -gencode arch=compute_35,code=sm_35
@@ -69,8 +69,8 @@ OBJDIR := ./obj/$(DBG)
 ########## USER STUFF ###########
 PYTHON_VERSION=$(shell python -V 2>&1 | cut -d ' ' -f 2 | cut -d '.' -f 1,2)
 MODELNAME := _ConvNet
-LDFLAGS   += -lpthread -ljpeg -lpython$(PYTHON_VERSION) -L../util -lutilpy -L../nvmatrix -lnvmatrix -L../cudaconv3 -lcudaconv -lcublas -Wl,-rpath=./util -Wl,-rpath=./nvmatrix -Wl,-rpath=./cudaconv3 
-INCLUDES      := -I$(CUDA_INC_PATH) -I $(CUDA_SDK_PATH)/common/inc -I./include -I$(PYTHON_INCLUDE_PATH) -I$(NUMPY_INCLUDE_PATH) 
+LDFLAGS   += -lpthread -L/gpfs/home/yzc147/work/libs/lib -ljpeg -L$(PYTHON_LIB_PATH) -lpython$(PYTHON_VERSION) -L../util -lutilpy -L../nvmatrix -lnvmatrix -L../cudaconv3 -lcudaconv -lcublas -Wl,-rpath=./util -Wl,-rpath=./nvmatrix -Wl,-rpath=./cudaconv3 
+INCLUDES := -I$(CUDA_INC_PATH) -I $(CUDA_SDK_PATH)/common/inc -I/gpfs/home/yzc147/work/libs/include -I./include -I/usr/global/CBLAS/3.5.0/include -I$(PYTHON_INCLUDE_PATH) -I$(NUMPY_INCLUDE_PATH) 
 
 DEFINES := -DNUMPY_INTERFACE
 

@@ -68,7 +68,7 @@ OBJDIR := ./obj/$(DBG)
 
 ########## USER STUFF ###########
 LDFLAGS   		+= -L../util -lutilpy -lcublas
-INCLUDES      	:= -I$(CUDA_INC_PATH) -I $(CUDA_SDK_PATH)/common/inc -I./include
+INCLUDES      	:= -I$(CUDA_INC_PATH) -I $(CUDA_SDK_PATH)/common/inc -I./include -I/usr/global/CBLAS/3.5.0/include
 
 CUFILES	:= $(shell find . -name "*.cu")
 CU_DEPS	:= $(shell find . -name "*.cuh")
